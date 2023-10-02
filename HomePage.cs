@@ -12,10 +12,11 @@ namespace PageObjectModel.Source.Pages
     {
         private IWebDriver _driver;
 
-        [FindsBy(How = How.Name, Using = "q")]
-        private IWebElement _searchtxtbox;
+        //[FindsBy(How = How.Name, Using = "q")]
+        //private IWebElement _searchtxtbox;
 
-        [FindsBy(How = How.Name, Using = "btnK")]
+        [FindsBy(How = How.Id, Using = "login-button")]
+
         private IWebElement _searchbtn;
 
         public HomePage(IWebDriver driver)
@@ -26,7 +27,7 @@ namespace PageObjectModel.Source.Pages
 
         public void Search(string searchText)
         {
-            _searchtxtbox.SendKeys(searchText);
+            //_searchtxtbox.SendKeys(searchText);
             _searchbtn.Click();
         }
 
