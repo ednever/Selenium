@@ -50,12 +50,25 @@ namespace PageObjectModel.Tests
             Thread.Sleep(1000);
 
             //Выбор действия
-            driver.FindElement(By.XPath("/html/body/table/tbody/tr[last()]/td[3]/a[2]")).Click();
+            driver.FindElement(By.XPath("/html/body/table/tbody/tr[last()]/td[3]/a[2]")).Click(); //a[1]
             Thread.Sleep(1000);
 
             //////////Переход на страницу Tellimus
             driver.FindElement(By.XPath("//*[@id='myNavbar']/a[5]")).Click();
             Thread.Sleep(1000);
+
+            try
+            {
+                driver.FindElement(By.XPath("/html/body/table/tbody/tr[last()]/td[5]/a")).Click();
+                Thread.Sleep(1000);
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("console.log('Товар не готов к выпуску.');");
+                throw;
+            }
 
 
         }
@@ -63,7 +76,7 @@ namespace PageObjectModel.Tests
         [TearDown]
         public void Cleanup()
         {
-            driver.Quit();
+            //driver.Quit();
         }
     }
 }
